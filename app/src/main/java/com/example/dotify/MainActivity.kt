@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.ericchee.songdataprovider.Song
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
@@ -17,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         tv_numPlay.text= randCode.toString()+ " Plays"
 
+
+          val song = intent.getParcelableExtra<Song>(SONG_KEY)
+
+        tv_songTitle.text= song.title
+        tv_artName.text=song.artist
+        iv_albumCover.setImageResource(song.largeImageID)
 
         bt_change.setOnClickListener {
             bt_apply.apply {
@@ -77,6 +84,14 @@ class MainActivity : AppCompatActivity() {
     fun goBack(view: View){
         Toast.makeText(this, "Skipping to previous track", Toast.LENGTH_SHORT).show();
 
+
+    }
+
+
+    companion object {
+        // Keys for intents
+
+        const val SONG_KEY = "SONG_KEY"
 
     }
 }

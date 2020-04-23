@@ -9,31 +9,49 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSongList"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/btShuffle"
+        app:layout_constraintBottom_toTopOf="@+id/tvsongshow"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item_song" />
+        tools:listitem="@layout/item_song"
+
+        />
 
     <Button
         android:id="@+id/btShuffle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_height="0dp"
+        android:text="Shuffle"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvSongList"
+        app:layout_constraintStart_toEndOf="@+id/tvsongshow" />
 
     <TextView
         android:id="@+id/tvsongshow"
-        android:layout_width="93dp"
-        android:layout_height="46dp"
-        android:padding="5dp"
-        android:text="SHow song text view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:foreground="?selectableItemBackground"
+        android:maxLines="1"
+        android:paddingTop="15dp"
+
+        android:paddingBottom="15dp"
+        android:text="Show song text view"
+        android:textColor="#000000"
+
+        android:textSize="18sp"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btShuffle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvSongList"
+     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
