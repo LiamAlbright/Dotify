@@ -18,16 +18,11 @@ class SongListActivity: AppCompatActivity() {
         val allSongdataMut  =   allSongdata.toMutableList()
         val firstSong: Song = allSongdata[1]
         println(firstSong)
-       // getAllSongTitles(allSongdata);
 
 
-        val listOfSongs =getAllSongTitles(allSongdataMut);
-        val listOfDescip =getAllSongDisc(allSongdataMut);
-        val listOfSmallimgs =getAllSongSmallImg(allSongdataMut);
 
-        val listOfSongsMut  =   listOfSongs.toMutableList()
 
-        val songAdapter = SongListAdapter(listOfSongs,listOfDescip, listOfSmallimgs, allSongdataMut )
+        val songAdapter = SongListAdapter(allSongdataMut )
 
         rvSongList.adapter = songAdapter
 
@@ -44,43 +39,10 @@ class SongListActivity: AppCompatActivity() {
 
         }
         btShuffle.setOnClickListener{
-          val newSongs=  listOfSongsMut.apply { shuffle() }
+          val newSongs =   allSongdataMut.toMutableList().apply { shuffle() }
             songAdapter.change(newSongs)
         }
     }
 }
 
-fun getAllSongTitles(allsongs: List<Song>):  List<String> {
-    val retListOftitles = mutableListOf<String>()
-
-
-    for (item in allsongs) {
-        retListOftitles += item.title
-    }
-
-    return retListOftitles
-}
-
-
-fun getAllSongDisc(allarts: List<Song>):  List<String> {
-    val retListOfarts = mutableListOf<String>()
-
-
-    for (item in allarts) {
-        retListOfarts += item.artist
-    }
-
-    return retListOfarts
-}
-
-fun getAllSongSmallImg(allimgs: List<Song>):  List<Int> {
-    val retListOfimgs = mutableListOf<Int>()
-
-
-    for (item in allimgs) {
-        retListOfimgs += item.smallImageID
-    }
-
-    return retListOfimgs
-}
 

@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
 
-class SongListAdapter(private var listOfSongs: List<String>,private val listOfDescip: List<String>,private val listOfSmallimgs: List<Int>,private val  allsongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>()  {
+class SongListAdapter( initallsongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>()  {
+    private var allsongs: List<Song> = initallsongs.toList()  // This is so we create a duplicate of the list passed in
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
@@ -18,43 +19,42 @@ class SongListAdapter(private var listOfSongs: List<String>,private val listOfDe
         return SongViewHolder(view)
     }
 
-    override fun getItemCount() = listOfSongs.size
+    override fun getItemCount() = allsongs.size
     var onSongClickListener: ((song: Song) -> Unit)? = null
 
+
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
-        val SongName = listOfSongs[position]
-        val SongDescip = listOfDescip[position]
-        val SongSmallimg = listOfSmallimgs[position]
+
         val allTheSongs= allsongs[position]
-        holder.bind(SongName, SongDescip, SongSmallimg, allTheSongs)
+        holder.bind( allTheSongs)
 
     }
 
-     fun change(newSon: List<String>) {
+     fun change(newSongs: List<Song>) {
         // Normal way up applying updates to list
-        listOfSongs = newSon
-        notifyDataSetChanged()
+         //  allsongs = newSongs
+      //  notifyDataSetChanged()
 
         // Animated way of applying updates to list
-   //     val callback = PersonDiffCallback(listOfPeople, newPeople)
-     //   val diffResult = DiffUtil.calculateDiff(callback)
-    //    diffResult.dispatchUpdatesTo(this)
+        val callback = SongDiffCallback(allsongs, newSongs)
+        val diffResult = DiffUtil.calculateDiff(callback)
+        diffResult.dispatchUpdatesTo(this)
 
         // We update the list
-      //  listOfPeople = newPeople
+         allsongs = newSongs
 
 
     }
 
     inner  class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val tvName = itemView.findViewById<TextView>(R.id.textTitle)
+        private val tvTitle = itemView.findViewById<TextView>(R.id.textTitle)
         private val tvDescip = itemView.findViewById<TextView>(R.id.textDesc)
         private val ivCovers = itemView.findViewById<ImageView>(R.id.iv_Cover)
 
-        fun bind(name: String, desc: String, smallImg:Int, song: Song) {
-            tvName.text = name
-            tvDescip.text = desc
-            ivCovers.setImageResource(smallImg)
+        fun bind(song: Song) {
+            tvTitle.text = song.title
+            tvDescip.text = song.artist
+            ivCovers.setImageResource(song.smallImageID)
             itemView.setOnClickListener{
                 onSongClickListener?.invoke(song)
             }
