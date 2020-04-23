@@ -38,4 +38,6 @@ dependencies {
     //added dependenceies
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation 'com.ericchee:songdataprovider:1.0.5'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+
 }

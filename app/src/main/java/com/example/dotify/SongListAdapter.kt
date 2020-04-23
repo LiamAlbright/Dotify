@@ -31,16 +31,11 @@ class SongListAdapter( initallsongs: List<Song>): RecyclerView.Adapter<SongListA
     }
 
      fun change(newSongs: List<Song>) {
-        // Normal way up applying updates to list
-         //  allsongs = newSongs
-      //  notifyDataSetChanged()
 
-        // Animated way of applying updates to list
         val callback = SongDiffCallback(allsongs, newSongs)
         val diffResult = DiffUtil.calculateDiff(callback)
         diffResult.dispatchUpdatesTo(this)
 
-        // We update the list
          allsongs = newSongs
 
 

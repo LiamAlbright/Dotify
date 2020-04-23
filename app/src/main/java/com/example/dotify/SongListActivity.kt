@@ -29,8 +29,6 @@ class SongListActivity: AppCompatActivity() {
         rvSongList.adapter = songAdapter
 
         songAdapter.onSongClickListener = { someSong: Song ->
-          // Toast.makeText(this, "My song title is ${someSong.title}", Toast.LENGTH_SHORT).show()
-
             tvsongshow.text = someSong.title +" - "+ someSong.artist
 
                 val intent = Intent(this, MainActivity::class.java)
