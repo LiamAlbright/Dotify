@@ -42,7 +42,6 @@
         android:paddingTop="15dp"
 
         android:paddingBottom="15dp"
-        android:text="Show song text view"
         android:textColor="#000000"
 
         android:textSize="18sp"
