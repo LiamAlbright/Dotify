@@ -2,8 +2,10 @@ package com.example.dotify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
+import kotlinx.android.synthetic.main.activity_ultim_main2.*
 
 class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
@@ -46,7 +48,9 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
-
+btShuffle.setOnClickListener{
+    listsongragment.shuffleList()
+}
 
     }
     private fun getSongMainFragment() = supportFragmentManager.findFragmentByTag(SongMainFrag.TAG) as? SongMainFrag
@@ -56,12 +60,23 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
         return super.onNavigateUp()
     }
     override fun onSongSelected(song: Song) {
+        tvsongshow.text = song.title +" - "+ song.artist
+
+        tvsongshow.setOnClickListener {
+            onSelectHelper(song);
+        }
+
+
+
+    }
+
+    private fun onSelectHelper(songTwo: Song){
         var songMainFragment = getSongMainFragment()
 
         if (songMainFragment == null) {
             songMainFragment = SongMainFrag()
             val argumentBundle = Bundle().apply {
-                putParcelable(SongMainFrag.SONG_KEY, song)
+                putParcelable(SongMainFrag.SONG_KEY, songTwo)
             }
             songMainFragment.arguments = argumentBundle
 
@@ -71,8 +86,9 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
                 .addToBackStack(SongMainFrag.TAG)
                 .commit()
         } else {
-            songMainFragment.updateSong(song)
-        }    }
+            songMainFragment.updateSong(songTwo)
+        }
+    }
 
 
 }

@@ -6,17 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
+import kotlinx.android.synthetic.main.activity_ultim_main2.*
 import kotlinx.android.synthetic.main.frag_list_song.*
 
 class SongListFrag: Fragment() {
     private var songsAll: List<Song>? = null
 
 
-    //val allSongdata: List<Song> = (SongDataProvider.getAllSongs())
-    //val allSongdataMut  =   allSongdata.toMutableList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,16 +72,13 @@ class SongListFrag: Fragment() {
             rvSongList.adapter = songAdapter
 
             songAdapter.onSongClicked = { someSong: Song ->
-                tvsongshow.text = someSong.title +" - "+ someSong.artist
-                onSongSelectedListener?.onSongSelected(someSong)
+                    onSongSelectedListener?.onSongSelected(someSong)
+
 
 
             }
 
-            btShuffle.setOnClickListener{
-                val newSongs =   songsMutfromAct.toMutableList().apply { shuffle() }
-                songAdapter.change(newSongs)
-            }
+
         }
     }
 
@@ -91,6 +88,32 @@ class SongListFrag: Fragment() {
         const val SONGs_KEY = "SONGs_KEY"
 
     }
+
+
+
+
+    fun shuffleList() {
+        updateShuffleSongs()
+    }
+
+    private fun updateShuffleSongs() {
+        songsAll?.let {
+            val songsMutfromAct = it.toMutableList()
+            val songAdapter = SongListAdapter(songsMutfromAct )
+
+            rvSongList.adapter = songAdapter
+            val newSongs =   songsMutfromAct.toMutableList().apply { shuffle() }
+            songAdapter.change(newSongs)
+            songAdapter.onSongClicked = { someSong: Song ->
+                onSongSelectedListener?.onSongSelected(someSong)
+
+
+
+            }
+
+        }
+    }
+
 }
 
 interface OnSongSelectedListener {
