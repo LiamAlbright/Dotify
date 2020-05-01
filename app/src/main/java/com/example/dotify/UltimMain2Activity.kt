@@ -1,3 +1,4 @@
+
 package com.example.dotify
 
 import android.annotation.SuppressLint
@@ -45,7 +46,7 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
             putParcelable(SongMainFrag.SONG_KEY, song)
         }
-         songMainFragment.arguments = argumentBundle2
+        songMainFragment.arguments = argumentBundle2
 
 
 
@@ -138,7 +139,7 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
         }
     }
 
- 
+
 
 
 

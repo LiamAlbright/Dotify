@@ -6,6 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".UltimMain2Activity"
     android:id="@+id/ultiLayout"
+
 >
 
 
@@ -13,7 +14,6 @@ tools:context=".UltimMain2Activity"
         android:id="@+id/fragContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/tvsongshow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -41,7 +41,6 @@ tools:context=".UltimMain2Activity"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:textColor="#000000"
-
         android:textSize="18sp"
         android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="#8E4B27"
-    >
+    android:padding="16dp"
+    android:background="#fff">
 
     <TextView
         android:id="@+id/us_name"
@@ -59,12 +58,15 @@
 
     <TextView
         android:id="@+id/tv_songTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
 
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="30sp"
+        android:ellipsize="end"
         android:text="CADILLACTICA"
+        android:maxLines="1"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -77,18 +79,18 @@
 
     <TextView
         android:id="@+id/tv_artName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:maxLines="1"
-        android:text="Big K.R.I.T."
+        android:text="BIG KRIT"
 
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/tv_songTitle"
         app:layout_constraintHorizontal_bias="0.531"
-        app:layout_constraintStart_toStartOf="@+id/tv_songTitle"
+        app:layout_constraintStart_toEndOf="@+id/iv_albumCover"
         app:layout_constraintTop_toBottomOf="@+id/tv_songTitle" />
 
     <TextView
@@ -96,9 +98,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="numplay"
-        app:layout_constraintBottom_toTopOf="@+id/bt_play"
-
         android:textColor="#000000"
+
+        app:layout_constraintBottom_toTopOf="@+id/bt_play"
         app:layout_constraintEnd_toEndOf="@+id/tv_artName"
         app:layout_constraintStart_toStartOf="@+id/tv_artName"
         app:layout_constraintTop_toBottomOf="@id/tv_artName" />
