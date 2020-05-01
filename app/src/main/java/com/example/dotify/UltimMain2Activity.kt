@@ -3,6 +3,7 @@ package com.example.dotify
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
@@ -26,7 +27,6 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
                 barSong = getParcelable(MINI_BAR)
                 barSong?.let { onSongSelected(it) }
-                //barSong?.let { onSelectHelper(it)}
 
             }
         } else {
@@ -54,7 +54,7 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
 
         if (supportFragmentManager.findFragmentByTag(SongMainFrag.TAG) == null) {
-            // There is no email detail fragment
+            // There is no song detail fragment
             val listsongragment = SongListFrag()
             val argumentBundle = Bundle().apply {
                 putParcelableArrayList(SongListFrag.SONGs_KEY, ArrayList(allSongdataMut))
@@ -69,7 +69,6 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
                 listsongragment.shuffleList()
             }
         } else {
-            // Email Detail Fragment already exists
 
         }
 
@@ -78,8 +77,21 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
             if (hasBackStack) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                btShuffle.apply {
+                    visibility = View.INVISIBLE
+                }
+                tvsongshow.apply {
+                    visibility = View.INVISIBLE
+                }
+
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                btShuffle.apply {
+                    visibility = View.VISIBLE
+                }
+                tvsongshow.apply {
+                    visibility = View.VISIBLE
+                }
             }
         }
 
@@ -113,15 +125,7 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
         var songMainFragment = getSongMainFragment()
 
         if (songMainFragment == null) {
-           // barSong?.let { SongMainFrag.getInstance(it) }
-
             songMainFragment = SongMainFrag.getInstance(songTwo)
-//            songMainFragment = SongMainFrag()
-//            val argumentBundle = Bundle().apply {
-//                putParcelable(SongMainFrag.SONG_KEY, songTwo)
-//            }
-//            songMainFragment.arguments = argumentBundle
-
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragContainer, songMainFragment, SongMainFrag.TAG)
@@ -134,9 +138,7 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
         }
     }
 
-    private fun onRotateHelp(song: Song) {
-
-    }
+ 
 
 
 
