@@ -61,7 +61,6 @@ class SongListFrag: Fragment() {
 
 
 
-
     private fun updateSongListViews() {
         songsAll?.let {
 
@@ -86,6 +85,7 @@ class SongListFrag: Fragment() {
         // Keys for intents
         val TAG: String = SongListFrag::class.java.simpleName
         const val SONGs_KEY = "SONGs_KEY"
+
 
     }
 
