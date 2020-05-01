@@ -28,7 +28,7 @@ class SongListActivity: AppCompatActivity() {
 
         rvSongList.adapter = songAdapter
 
-        songAdapter.onSongClickListener = { someSong: Song ->
+        songAdapter.onSongClicked = { someSong: Song ->
             tvsongshow.text = someSong.title +" - "+ someSong.artist
 
                 val intent = Intent(this, MainActivity::class.java)

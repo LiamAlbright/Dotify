@@ -20,7 +20,7 @@ class SongListAdapter( initallsongs: List<Song>): RecyclerView.Adapter<SongListA
     }
 
     override fun getItemCount() = allsongs.size
-    var onSongClickListener: ((song: Song) -> Unit)? = null
+    var onSongClicked: ((song: Song) -> Unit)? = null
 
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
@@ -51,7 +51,7 @@ class SongListAdapter( initallsongs: List<Song>): RecyclerView.Adapter<SongListA
             tvDescip.text = song.artist
             ivCovers.setImageResource(song.smallImageID)
             itemView.setOnClickListener{
-                onSongClickListener?.invoke(song)
+                onSongClicked?.invoke(song)
             }
         }
 
