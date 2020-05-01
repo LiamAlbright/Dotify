@@ -20,11 +20,18 @@ class SongMainFrag : Fragment() {
     var randCode = Random.nextInt(1000, 9999)
 
     private var song: Song? = null
+    private var songCurrent: Song? = null
 
     companion object {
         val TAG: String = SongMainFrag::class.java.simpleName
 
         const val SONG_KEY = "SONG_KEY"
+        const val CUR_KEY = "CUR_KEY"
+        fun getInstance(song: Song) = SongMainFrag().apply {
+            arguments = Bundle().apply {
+                putParcelable(SONG_KEY, song)
+            }
+        }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +41,16 @@ class SongMainFrag : Fragment() {
             if (song != null) {
                 this.song = song
             }
+
+//            args.getParcelable<Song>(CUR_KEY)?.let { song ->
+//                songCurrent = song
+//            }
         }
 
+    }
+    fun updateSong(song: Song) {
+        this.song = song
+        updateSongViews()
     }
 
     override fun onCreateView(
@@ -51,11 +66,6 @@ class SongMainFrag : Fragment() {
         tv_numPlay.text= randCode.toString()+ " Plays"
 
 
-       // val song = intent.getParcelableExtra<Song>(SONG_KEY)
-
-//        tv_songTitle.text= song.title
-//        tv_artName.text=song.artist
-//        iv_albumCover.setImageResource(song.largeImageID)
         updateSongViews()
 
         bt_change.setOnClickListener {
@@ -117,10 +127,6 @@ class SongMainFrag : Fragment() {
     }
 
 
-    fun updateSong(song: Song) {
-        this.song = song
-        updateSongViews()
-    }
 
     private fun updateSongViews() {
         song?.let {

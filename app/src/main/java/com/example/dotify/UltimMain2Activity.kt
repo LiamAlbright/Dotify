@@ -1,5 +1,6 @@
 package com.example.dotify
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -9,11 +10,10 @@ import kotlinx.android.synthetic.main.activity_ultim_main2.*
 
 class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
     companion object {
-      //  val TAG: String = UltimMain2Activity::class.java.simpleName
         private const val MINI_BAR = "MINI_BAR"
+
     }
 
-    private var barString2= ""
     private var barSong: Song?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +23,10 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
         if (savedInstanceState != null) {
             with(savedInstanceState) {
-              //  Toast.makeText(applicationContext, "htitin bundle logic "+ getString(MINI_BAR), Toast.LENGTH_SHORT).show();
 
                 barSong = getParcelable(MINI_BAR)
                 barSong?.let { onSongSelected(it) }
+                //barSong?.let { onSelectHelper(it)}
 
             }
         } else {
@@ -45,22 +45,33 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
             putParcelable(SongMainFrag.SONG_KEY, song)
         }
-        songMainFragment.arguments = argumentBundle2
+         songMainFragment.arguments = argumentBundle2
 
 
 
 
-        val argumentBundle = Bundle().apply {
-            putParcelableArrayList(SongListFrag.SONGs_KEY, ArrayList(allSongdataMut))
+
+
+
+        if (supportFragmentManager.findFragmentByTag(SongMainFrag.TAG) == null) {
+            // There is no email detail fragment
+            val listsongragment = SongListFrag()
+            val argumentBundle = Bundle().apply {
+                putParcelableArrayList(SongListFrag.SONGs_KEY, ArrayList(allSongdataMut))
+            }
+            listsongragment.arguments =argumentBundle
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragContainer, listsongragment)
+                .commit()
+
+            btShuffle.setOnClickListener{
+                listsongragment.shuffleList()
+            }
+        } else {
+            // Email Detail Fragment already exists
+
         }
-
-
-        val listsongragment = SongListFrag()
-        listsongragment.arguments =argumentBundle
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragContainer, listsongragment)
-            .commit()
 
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackStack = supportFragmentManager.backStackEntryCount > 0
@@ -71,9 +82,7 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
-        btShuffle.setOnClickListener{
-            listsongragment.shuffleList()
-        }
+
 
     }
     override fun onSaveInstanceState(outState: Bundle) {
@@ -90,8 +99,8 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
     override fun onSongSelected(song: Song) {
         tvsongshow.text = song.title +" - "+ song.artist
-      //  barString = song.title +" - "+ song.artist
         barSong = song
+
         tvsongshow.setOnClickListener {
             onSelectHelper(song);
         }
@@ -104,21 +113,35 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
         var songMainFragment = getSongMainFragment()
 
         if (songMainFragment == null) {
-            songMainFragment = SongMainFrag()
-            val argumentBundle = Bundle().apply {
-                putParcelable(SongMainFrag.SONG_KEY, songTwo)
-            }
-            songMainFragment.arguments = argumentBundle
+           // barSong?.let { SongMainFrag.getInstance(it) }
+
+            songMainFragment = SongMainFrag.getInstance(songTwo)
+//            songMainFragment = SongMainFrag()
+//            val argumentBundle = Bundle().apply {
+//                putParcelable(SongMainFrag.SONG_KEY, songTwo)
+//            }
+//            songMainFragment.arguments = argumentBundle
 
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragContainer, songMainFragment, SongMainFrag.TAG)
                 .addToBackStack(SongMainFrag.TAG)
                 .commit()
+
         } else {
             songMainFragment.updateSong(songTwo)
+
         }
     }
+
+    private fun onRotateHelp(song: Song) {
+
+    }
+
+
+
+
+
 
 
 

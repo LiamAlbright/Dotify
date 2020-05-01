@@ -93,6 +93,8 @@ class SongListFrag: Fragment() {
 
 
     fun shuffleList() {
+      //  Toast.makeText(context, "Shuffle test frag", Toast.LENGTH_SHORT).show();
+
         updateShuffleSongs()
     }
 
@@ -112,6 +114,10 @@ class SongListFrag: Fragment() {
             }
 
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 
 }
