@@ -48,9 +48,9 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
-btShuffle.setOnClickListener{
-    listsongragment.shuffleList()
-}
+        btShuffle.setOnClickListener{
+            listsongragment.shuffleList()
+        }
 
     }
     private fun getSongMainFragment() = supportFragmentManager.findFragmentByTag(SongMainFrag.TAG) as? SongMainFrag
