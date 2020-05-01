@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
+
     >
 
     <TextView
@@ -52,12 +53,14 @@
         android:id="@+id/iv_albumCover"
         android:layout_width="394dp"
         android:layout_height="323dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_change"
         app:srcCompat="@drawable/albumart" />
 
     <TextView
         android:id="@+id/tv_songTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
 
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -67,13 +70,17 @@
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
+
+        android:maxLines="1"
+        android:ellipsize="end"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_albumCover" />
 
     <TextView
         android:id="@+id/tv_artName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="center_horizontal"
