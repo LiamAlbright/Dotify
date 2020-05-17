@@ -1,7 +1,6 @@
 package com.example.dotify
 
 import android.app.Application
-import com.ericchee.songdataprovider.Song
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

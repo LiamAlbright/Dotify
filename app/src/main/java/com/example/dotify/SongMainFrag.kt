@@ -1,14 +1,14 @@
 package com.example.dotify
 
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.ericchee.songdataprovider.Song
+import androidx.fragment.app.Fragment
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_song_main.*
 import kotlin.random.Random
 
@@ -127,7 +127,10 @@ class SongMainFrag : Fragment() {
         song?.let {
             tv_songTitle.text= it.title
             tv_artName.text=it.artist
-            iv_albumCover.setImageResource(it.largeImageID)
+            //iv_albumCover.setImageResource(it.largeImageID)
+            val myUri = Uri.parse(it.largeImageURL)
+            Picasso.get().load(myUri).into(iv_albumCover);
+
         }
     }
 

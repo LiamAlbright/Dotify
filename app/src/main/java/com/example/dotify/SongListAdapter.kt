@@ -1,5 +1,7 @@
 package com.example.dotify
 
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ericchee.songdataprovider.Song
+import com.example.dotify.SongMainFrag.Companion.TAG
+import com.squareup.picasso.Picasso
 
 class SongListAdapter( initallsongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>()  {
     private var allsongs: List<Song> = initallsongs.toList()  // This is so we create a duplicate of the list passed in
@@ -49,7 +52,11 @@ class SongListAdapter( initallsongs: List<Song>): RecyclerView.Adapter<SongListA
         fun bind(song: Song) {
             tvTitle.text = song.title
             tvDescip.text = song.artist
-            ivCovers.setImageResource(song.smallImageID)
+           // ivCovers.setImageResource(song.smallImageID)
+            val myUri = Uri.parse(song.smallImageURL)
+            Picasso.get().load(myUri).into(ivCovers);
+
+            //
             itemView.setOnClickListener{
                 onSongClicked?.invoke(song)
             }

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import kotlinx.android.synthetic.main.activity_ultim_main2.*
 
@@ -201,7 +200,7 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
         val songMainFragment = SongMainFrag()
         val argumentBundle2 = Bundle().apply {
             val song = allSongdataMut[1]
-            Log.i(TAG, "song image test "+ song.largeImageID)
+            Log.i(TAG, "song image test1 "+ song)
 
             putParcelable(SongMainFrag.SONG_KEY, song)
         }
