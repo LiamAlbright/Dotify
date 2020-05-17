@@ -4,6 +4,7 @@ package com.example.dotify
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
@@ -17,12 +18,25 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
     }
 
     private var barSong: Song?= null
+    private lateinit var apiManager: ApiManager
+    private val TAG = "liam"
+    var retSongs: List<Song> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ultim_main2)
 
+        //////////btGetSongs/////////////////////////////////
+        apiManager = (application as CoolHttpApp).apiManager
 
+        btGetSongs.setOnClickListener {
+            fetchSongWithRetroFit()
+        }
+
+
+
+
+////////////////////////http fet stuff////////////////////////////////////////////////////
         if (savedInstanceState != null) {
             with(savedInstanceState) {
 
@@ -139,7 +153,42 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
         }
     }
 
+    private fun fetchSongWithRetroFit() :  List<Song> {
 
+
+        apiManager.getListOfSongs({ allSongs ->
+        //    Log.i(TAG, "All of the songs"+ allSongs.songs)
+            retSongs = allSongs.songs
+           // Log.i(TAG, " fetlisttest "+ retSongs)
+            onhtpHelper(allSongs.songs)
+        })
+//        Log.i(TAG, "update view 1")
+//        Log.i(TAG, "update view 2")
+//        Log.i(TAG, "update view 3")
+//        Log.i(TAG, "update view 4")
+//        Log.i(TAG, "update view 5")
+//        Log.i(TAG, "update view 6")
+        return retSongs
+    }
+
+
+    private fun onhtpHelper( inithttpsongs: List<Song>){
+        retSongs = inithttpsongs
+        Log.i(TAG, "return list test "+ retSongs)
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 

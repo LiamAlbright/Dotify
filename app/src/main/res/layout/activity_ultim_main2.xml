@@ -19,7 +19,18 @@ tools:context=".UltimMain2Activity"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
     </FrameLayout>
+
+    <Button
+        android:id="@+id/btGetSongs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GetSongs"
+        app:layout_constraintBottom_toTopOf="@+id/tvsongshow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
     <Button
         android:id="@+id/btShuffle"
         android:layout_width="wrap_content"
@@ -29,7 +40,7 @@ tools:context=".UltimMain2Activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvsongshow"
-        app:layout_constraintTop_toBottomOf="@+id/fragContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/btGetSongs" />
 
     <TextView
         android:id="@+id/tvsongshow"
