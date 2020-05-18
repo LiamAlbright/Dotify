@@ -12,4 +12,4 @@ Description: This is an application that does a music player UI mockup in Androi
 
 
 ## **App screenshot2**
-![app screenshot2](imgs/hw1screenshot2.png "app screenshot2")
+![app screenshot2](imgs/hw4screenshot2.png "app screenshot2")
