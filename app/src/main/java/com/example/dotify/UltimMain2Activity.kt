@@ -242,6 +242,9 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
                 tvsongshow.apply {
                     visibility = View.INVISIBLE
                 }
+                btGetSongs.apply {
+                   visibility = View.INVISIBLE
+           }
 
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -249,6 +252,9 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
                     visibility = View.VISIBLE
                 }
                 tvsongshow.apply {
+                    visibility = View.VISIBLE
+                }
+                btGetSongs.apply {
                     visibility = View.VISIBLE
                 }
             }
