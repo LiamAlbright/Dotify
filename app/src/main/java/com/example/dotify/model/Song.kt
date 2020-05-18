@@ -1,4 +1,4 @@
-package com.example.dotify
+package com.example.dotify.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,6 +1,8 @@
-package com.example.dotify
+package com.example.dotify.backend
 
 import android.app.Application
+import com.example.dotify.model.AllSongs
+import com.example.dotify.model.Song
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

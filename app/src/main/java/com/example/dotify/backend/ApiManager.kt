@@ -1,6 +1,8 @@
-package com.example.dotify
+package com.example.dotify.backend
 
 
+import com.example.dotify.model.AllSongs
+import com.example.dotify.model.Song
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

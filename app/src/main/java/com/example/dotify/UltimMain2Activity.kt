@@ -1,16 +1,20 @@
 
 package com.example.dotify
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import com.ericchee.songdataprovider.SongDataProvider
+import com.example.dotify.appcode.OnSongSelectedListener
+import com.example.dotify.appcode.SongListFrag
+import com.example.dotify.appcode.SongMainFrag
+import com.example.dotify.backend.ApiManager
+import com.example.dotify.backend.CoolHttpApp
+import com.example.dotify.model.Song
 import kotlinx.android.synthetic.main.activity_ultim_main2.*
 
-class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
+class UltimMain2Activity : AppCompatActivity(),
+    OnSongSelectedListener {
     companion object {
         private const val MINI_BAR = "MINI_BAR"
 
@@ -27,90 +31,10 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
         //////////btGetSongs/////////////////////////////////
         apiManager = (application as CoolHttpApp).apiManager
-
         btGetSongs.setOnClickListener {
             fetchSongWithRetroFit(savedInstanceState)
-//            btGetSongs.apply {
-//                visibility = View.INVISIBLE
-//            }
         }
 
-
-
-
-////////////////////////http fet stuff////////////////////////////////////////////////////
-//        if (savedInstanceState != null) {
-//            with(savedInstanceState) {
-//
-//                barSong = getParcelable(MINI_BAR)
-//                barSong?.let { onSongSelected(it) }
-//
-//            }
-//        } else {
-//            barSong = null
-//        }
-//
-//
-//        val allSongdata: List<Song> = (SongDataProvider.getAllSongs())
-//        val allSongdataMut  =   allSongdata.toMutableList()
-//
-//
-//
-//        val songMainFragment = SongMainFrag()
-//        val argumentBundle2 = Bundle().apply {
-//            val song = allSongdataMut[1]
-//
-//            putParcelable(SongMainFrag.SONG_KEY, song)
-//        }
-//        songMainFragment.arguments = argumentBundle2
-//
-//
-//
-//
-//
-//
-//
-//        if (supportFragmentManager.findFragmentByTag(SongMainFrag.TAG) == null) {
-//            // There is no song detail fragment
-//            val listsongragment = SongListFrag()
-//            val argumentBundle = Bundle().apply {
-//                putParcelableArrayList(SongListFrag.SONGs_KEY, ArrayList(allSongdataMut))
-//            }
-//            listsongragment.arguments =argumentBundle
-//            supportFragmentManager
-//                .beginTransaction()
-//                .add(R.id.fragContainer, listsongragment)
-//                .commit()
-//
-//            btShuffle.setOnClickListener{
-//                listsongragment.shuffleList()
-//            }
-//        } else {
-//
-//        }
-//
-//        supportFragmentManager.addOnBackStackChangedListener {
-//            val hasBackStack = supportFragmentManager.backStackEntryCount > 0
-//
-//            if (hasBackStack) {
-//                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//                btShuffle.apply {
-//                    visibility = View.INVISIBLE
-//                }
-//                tvsongshow.apply {
-//                    visibility = View.INVISIBLE
-//                }
-//
-//            } else {
-//                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-//                btShuffle.apply {
-//                    visibility = View.VISIBLE
-//                }
-//                tvsongshow.apply {
-//                    visibility = View.VISIBLE
-//                }
-//            }
-//        }
 
 
     }
@@ -159,26 +83,16 @@ class UltimMain2Activity : AppCompatActivity(),OnSongSelectedListener {
 
 
         apiManager.getListOfSongs({ allSongs ->
-        //    Log.i(TAG, "All of the songs"+ allSongs.songs)
             retSongs = allSongs.songs
-           // Log.i(TAG, " fetlisttest "+ retSongs)
             onhtpHelper(allSongs.songs,savedInstanceState )
         })
-//        Log.i(TAG, "update view 1")
-//        Log.i(TAG, "update view 2")
-//        Log.i(TAG, "update view 3")
-//        Log.i(TAG, "update view 4")
-//        Log.i(TAG, "update view 5")
-//        Log.i(TAG, "update view 6")
         return retSongs
     }
 
 
-    private fun onhtpHelper( inithttpsongs: List<Song>, savedInstanceState: Bundle?){
+    private fun onhtpHelper(inithttpsongs: List<Song>, savedInstanceState: Bundle?){
         retSongs = inithttpsongs
         Log.i(TAG, "return list test "+ retSongs)
-
-
 
         if (savedInstanceState != null) {
             with(savedInstanceState) {

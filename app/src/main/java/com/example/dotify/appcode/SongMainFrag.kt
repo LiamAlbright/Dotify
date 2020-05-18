@@ -1,4 +1,4 @@
-package com.example.dotify
+package com.example.dotify.appcode
 
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.dotify.R
+import com.example.dotify.model.Song
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_song_main.*
 import kotlin.random.Random

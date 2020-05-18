@@ -1,4 +1,4 @@
-package com.example.dotify
+package com.example.dotify.model
 
 
 data class AllSongs(

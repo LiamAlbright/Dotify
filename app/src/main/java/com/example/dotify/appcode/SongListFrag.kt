@@ -1,15 +1,13 @@
-package com.example.dotify
+package com.example.dotify.appcode
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.ericchee.songdataprovider.SongDataProvider
-import kotlinx.android.synthetic.main.activity_ultim_main2.*
+import com.example.dotify.R
+import com.example.dotify.model.Song
 import kotlinx.android.synthetic.main.frag_list_song.*
 
 class SongListFrag: Fragment() {
@@ -65,7 +63,8 @@ class SongListFrag: Fragment() {
 
             val songsMutfromAct = it.toMutableList()
 
-            val songAdapter = SongListAdapter(songsMutfromAct )
+            val songAdapter =
+                SongListAdapter(songsMutfromAct)
 
             rvSongList.adapter = songAdapter
 
@@ -100,7 +99,8 @@ class SongListFrag: Fragment() {
     private fun updateShuffleSongs() {
         songsAll?.let {
             val songsMutfromAct = it.toMutableList()
-            val songAdapter = SongListAdapter(songsMutfromAct )
+            val songAdapter =
+                SongListAdapter(songsMutfromAct)
 
             rvSongList.adapter = songAdapter
             val newSongs =   songsMutfromAct.toMutableList().apply { shuffle() }
